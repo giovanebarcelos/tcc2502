@@ -1,0 +1,19 @@
+import java_cup.runtime.*;
+
+parser code {:
+   public static void main(String[] args) throws Exception {
+      Lexer lexer = new Lexer(new java.io.FileReader(args[0]));
+      parser p = new parser(lexer);
+      Object result = p.parse().value;
+      System.out.println("Resultado = "+result);
+   }
+:}
+
+non terminal Integer expr;
+terminal PLUS, MINUS, NUMBER;
+
+precedence left PLUS, MINUS;
+
+expr ::= expr PLUS expr |
+         expr MINUS expr |
+         NUMBER;
