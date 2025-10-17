@@ -1,0 +1,28 @@
+import java_cup.runtime.*;
+
+parser code {: 
+ public static void main(String argv[]) { 
+ try {
+ Scanner scanner = new Scanner(System.in);
+parser p = new parser(scanner);
+ Object result = p.parse().value;
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+:}
+
+/* TERMINAIS */
+terminal PTVIRG, MAIS, MENOS, INTEIRO;
+
+/* NÃO TERMINAIS */
+non terminal expr_list, expr_ptv, expr;
+
+expr_list ::= expr_list expr_ptv
+              | expr_ptv;
+
+expr_ptv ::= expr PTVIRG;
+
+expr ::=   INTEIRO MAIS expr
+         | INTEIRO MENOS expr
+         | INTEIRO;
