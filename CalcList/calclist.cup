@@ -1,9 +1,11 @@
 import java_cup.runtime.*;
+import java.util.*;
+import java.io.InputStreamReader;
 
 parser code {: 
  public static void main(String argv[]) { 
  try {
- Scanner scanner = new Scanner(System.in);
+ Scanner scanner = new Scanner(new InputStreamReader(System.in));
 parser p = new parser(scanner);
  Object result = p.parse().value;
  } catch (Exception e) {
